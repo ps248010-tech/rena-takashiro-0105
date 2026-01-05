@@ -2,15 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio Top</title>
+  <title>高城玲奈｜公式サイト</title>
 
-  <!-- スマホ表示をきれいにするために必須 -->
+  <!-- スマホ対応に必須 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* =====================
-       全体の基本設定
-    ===================== */
+    /* ===== 全体設定 ===== */
     body {
       margin: 0;
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -23,9 +21,7 @@
       color: inherit;
     }
 
-    /* =====================
-       ヘッダー
-    ===================== */
+    /* ===== ヘッダー ===== */
     header {
       display: flex;
       align-items: center;
@@ -35,7 +31,7 @@
     }
 
     header img {
-      height: 40px; /* ロゴの高さ */
+      height: 40px;
     }
 
     header h1 {
@@ -44,13 +40,8 @@
       letter-spacing: 1px;
     }
 
-    /* =====================
-       メインビジュアル
-    ===================== */
+    /* ===== メインビジュアル ===== */
     .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 60px 20px;
       background-color: #f2f2f2;
     }
@@ -58,20 +49,15 @@
     .hero-inner {
       display: flex;
       max-width: 1000px;
-      width: 100%;
+      margin: 0 auto;
       gap: 40px;
+      align-items: center;
     }
 
-    /* メイン画像 */
     .hero-image img {
       width: 100%;
       max-width: 420px;
       border-radius: 8px;
-    }
-
-    /* テキストエリア */
-    .hero-text {
-      flex: 1;
     }
 
     .hero-text h2 {
@@ -85,26 +71,12 @@
       margin-bottom: 24px;
     }
 
-    /* =====================
-       ボタン
-    ===================== */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      background-color: #1e88e5;
-      color: #fff;
-      border-radius: 24px;
-      font-size: 14px;
-      transition: background-color 0.3s;
+    /* ===== 予約ボタン ===== */
+    .reserve-btn img {
+      width: 200px;
     }
 
-    .btn:hover {
-      background-color: #1565c0;
-    }
-
-    /* =====================
-       フッター
-    ===================== */
+    /* ===== フッター ===== */
     footer {
       text-align: center;
       padding: 20px;
@@ -112,9 +84,7 @@
       color: #777;
     }
 
-    /* =====================
-       スマホ対応
-    ===================== */
+    /* ===== スマホ対応 ===== */
     @media (max-width: 768px) {
       .hero-inner {
         flex-direction: column;
@@ -124,53 +94,59 @@
       .hero-text h2 {
         font-size: 26px;
       }
-
-      .hero-image img {
-        max-width: 100%;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ヘッダー -->
+  <!-- ===== ヘッダー ===== -->
   <header>
-    <!-- ロゴ画像（仮） -->
-    <img src="https://via.placeholder.com/150x50?text=LOGO" alt="ロゴ">
+    <!-- ロゴ画像 -->
+    <img
+      src="https://ps248010-tech.github.io/rena-takashiro-0105/logo.png"
+      alt="スターダリアエンターテインメントのロゴ"
+    >
     <h1>STARDALIA ENTERTAINMENT</h1>
   </header>
 
-  <!-- メインビジュアル -->
+  <!-- ===== トップページ メイン ===== -->
   <section class="hero">
     <div class="hero-inner">
 
-      <!-- 写真エリア -->
+      <!-- メイン写真 -->
       <div class="hero-image">
-        <!-- メイン画像（仮） -->
-        <img src="https://via.placeholder.com/600x800?text=Main+Image" alt="メイン画像">
+        <img
+          src="https://ps248010-tech.github.io/rena-takashiro-0105/images/main-visual.jpg"
+          alt="女優・高城玲奈のメインビジュアル写真"
+        >
       </div>
 
-      <!-- テキストエリア -->
+      <!-- テキスト情報 -->
       <div class="hero-text">
         <h2>高城 玲奈</h2>
         <p>
           Rena Takashiro<br>
           女優 / Actress<br><br>
           映画・ドラマを中心に活動。<br>
-          透明感と感情表現を大切にしています。
+          繊細な感情表現と透明感を強みにしています。
         </p>
 
-        <!-- ボタン -->
-        <a href="#" class="btn">お問い合わせ</a>
+        <!-- 予約ボタン -->
+        <a href="#" class="reserve-btn">
+          <img
+            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/btn-reserve.png"
+            alt="出演・お仕事のご予約はこちら"
+          >
+        </a>
       </div>
 
     </div>
   </section>
 
-  <!-- フッター -->
+  <!-- ===== フッター ===== -->
   <footer>
-    © Stardalia Entertainment
+    © Stardalia Entertainment Promotion
   </footer>
 
 </body>
