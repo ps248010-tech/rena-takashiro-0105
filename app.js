@@ -10,13 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // 通常の送信を止める
 
+    // ✅ 追加：支払方法が選ばれていないときの安全チェック
+    const paymentEl = document.querySelector('input[name="payment"]:checked');
+    if (!paymentEl) {
+      alert("支払方法を選択してください");
+      return;
+    }
+
     // 入力値をまとめる（data を作る）
     const data = {
       name: document.querySelector("#name").value,
       email: document.querySelector("#email").value,
       date: document.querySelector("#date").value,
-      payment: document.querySelector('input[name="payment"]:checked').value,
-      message: document.querySelector("#message").value
+      payment: paymentEl.value, // ✅ ここも変更：paymentEl から取得
+      message: document.querySelector("#message").value,
     };
 
     try {
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(API_BASE + "/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       const json = await res.json();
