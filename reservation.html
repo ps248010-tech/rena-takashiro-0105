@@ -171,7 +171,7 @@
         ✅このフォームは「見た目用・課題用」です
         ✅実際の送信は行わず、後でJavaScriptで完了ページへ移動できます
       -->
-      <form id="reservationForm">
+      <form id="reservationForm" action="#" method="post">
         <!-- 氏名 -->
         <div class="field">
           <label for="name">氏名<span class="req">必須</span></label>
@@ -245,6 +245,8 @@
       </form>
     </main>
   </div>
+
+  <!-- ✅ bodyの閉じタグ直前に app.js を読み込む（再確認済み） -->
   <script src="app.js"></script>
 </body>
 </html>
