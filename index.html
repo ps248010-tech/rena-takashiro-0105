@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* ===== 全体設定 ===== */
+    /* ===== 全体 ===== */
     body {
       margin: 0;
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -50,37 +50,31 @@
       display: flex;
       max-width: 1100px;
       margin: 0 auto;
-      gap: 48px;
-      align-items: center;
+      gap: 40px;
+      align-items: flex-start;
     }
 
-    /* ===== 画像エリア ===== */
     .hero-image {
       flex: 1;
     }
 
-    .main-photo {
+    .hero-image img {
       width: 100%;
-      max-width: 420px;
-      border-radius: 10px;
-      display: block;
+      border-radius: 8px;
+      margin-bottom: 16px;
     }
 
+    /* サムネイル */
     .gallery {
       display: flex;
       gap: 12px;
-      margin-top: 14px;
-      flex-wrap: wrap;
     }
 
     .gallery img {
       width: 120px;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 6px;
     }
 
-    /* ===== テキスト ===== */
     .hero-text {
       flex: 1;
     }
@@ -92,13 +86,13 @@
 
     .hero-text p {
       font-size: 16px;
-      line-height: 1.9;
+      line-height: 1.8;
       margin-bottom: 24px;
     }
 
     /* ===== 予約ボタン ===== */
     .reserve-btn img {
-      width: 200px;
+      width: 240px;
     }
 
     /* ===== フッター ===== */
@@ -107,27 +101,17 @@
       padding: 20px;
       font-size: 12px;
       color: #777;
-      background: #fff;
     }
 
-    /* ===== スマホ対応 ===== */
+    /* ===== スマホ ===== */
     @media (max-width: 768px) {
       .hero-inner {
         flex-direction: column;
         text-align: center;
       }
 
-      .hero-text h2 {
-        font-size: 26px;
-      }
-
       .gallery {
         justify-content: center;
-      }
-
-      .gallery img {
-        width: 45%;
-        max-width: 160px;
       }
     }
   </style>
@@ -137,7 +121,10 @@
 
   <!-- ===== ヘッダー ===== -->
   <header>
-    <img src="images/2.png" alt="スターダリアエンターテインメントのロゴ">
+    <img
+      src="https://ps248010-tech.github.io/rena-takashiro-0105/images/2.png"
+      alt="サイトのロゴ"
+    >
     <h1>STARDALIA ENTERTAINMENT</h1>
   </header>
 
@@ -145,18 +132,28 @@
   <section class="hero">
     <div class="hero-inner">
 
-      <!-- 画像 -->
+      <!-- 左：画像 -->
       <div class="hero-image">
-        <img src="images/1.png" alt="高城玲奈 メインビジュアル" class="main-photo">
+        <!-- メイン写真 -->
+        <img
+          src="https://ps248010-tech.github.io/rena-takashiro-0105/images/1.png"
+          alt="メインビジュアル"
+        >
 
+        <!-- サブ写真 -->
         <div class="gallery">
-          <img src="images/2.png" alt="プロフィール写真">
-          <img src="images/3.png" alt="追加写真3">
-          <img src="images/4.png" alt="追加写真4">
+          <img
+            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/2.png"
+            alt="プロフィール写真1"
+          >
+          <img
+            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/3.png"
+            alt="プロフィール写真2"
+          >
         </div>
       </div>
 
-      <!-- テキスト -->
+      <!-- 右：テキスト -->
       <div class="hero-text">
         <h2>高城 玲奈</h2>
         <p>
@@ -166,8 +163,12 @@
           繊細な感情表現と透明感を強みにしています。
         </p>
 
+        <!-- ★ 右下：予約ボタン（4.png）★ -->
         <a href="#" class="reserve-btn">
-          <img src="images/4.png" alt="予約する">
+          <img
+            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/4.png"
+            alt="予約するボタン"
+          >
         </a>
       </div>
 
