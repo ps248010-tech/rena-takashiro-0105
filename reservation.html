@@ -5,22 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>予約フォーム</title>
 
-  <!--
-    ✅CSSはこの<style>タグの中にまとめます
-    ✅デザインは「薄いグレー背景＋白いカード＋角丸＋影」のシンプル版
-  -->
   <style>
-    /* ===== 全体 ===== */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
         Arial, "Noto Sans JP", sans-serif;
       color: #333;
-      background: #eeeeee;           /* 薄いグレー */
+      background: #eeeeee;
       line-height: 1.7;
     }
 
-    /* 画面中央に配置（スマホでも左右に余白ができる） */
     .page {
       min-height: 100vh;
       display: flex;
@@ -30,10 +24,9 @@
       box-sizing: border-box;
     }
 
-    /* 白いカード（フォーム本体） */
     .card {
       width: 100%;
-      max-width: 560px;              /* PCで広がりすぎない */
+      max-width: 560px;
       background: #fff;
       border-radius: 18px;
       padding: 28px;
@@ -41,12 +34,10 @@
       box-sizing: border-box;
     }
 
-    /* タイトル */
     h1 {
       margin: 0 0 8px;
       text-align: center;
       font-size: 28px;
-      letter-spacing: 1px;
     }
 
     .sub {
@@ -56,7 +47,6 @@
       font-size: 14px;
     }
 
-    /* 入力ブロック */
     .field {
       margin-bottom: 16px;
     }
@@ -65,17 +55,15 @@
       display: block;
       font-size: 15px;
       font-weight: 700;
-      margin: 0 0 8px;
+      margin-bottom: 8px;
     }
 
     .req {
-      color: #e53935;                /* 必須は赤 */
-      font-weight: 800;
+      color: #e53935;
       margin-left: 6px;
       font-size: 13px;
     }
 
-    /* テキスト入力 */
     input[type="text"],
     input[type="email"],
     input[type="date"],
@@ -84,9 +72,8 @@
       padding: 14px;
       border-radius: 12px;
       border: 1px solid #cfcfcf;
-      font-size: 16px;               /* スマホで拡大されにくい */
+      font-size: 16px;
       box-sizing: border-box;
-      background: #fff;
     }
 
     textarea {
@@ -94,15 +81,13 @@
       resize: vertical;
     }
 
-    /* 入力中の強調 */
     input:focus,
     textarea:focus {
       outline: none;
       border-color: #1e88e5;
-      box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.18);
+      box-shadow: 0 0 0 4px rgba(30,136,229,0.18);
     }
 
-    /* 支払方法（選択式） */
     .radio-wrap {
       border: 1px solid #e2e2e2;
       border-radius: 12px;
@@ -114,49 +99,30 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 4px;
+      padding: 8px 4px;
       font-size: 16px;
     }
 
-    .radio-item input {
-      width: 18px;
-      height: 18px;
-    }
-
     .pay-note {
-      margin: 6px 0 0;
-      color: #666;
+      margin-top: 6px;
       font-size: 13px;
+      color: #666;
     }
 
-    /* 送信ボタン */
     .btn {
       width: 100%;
-      margin-top: 6px;
       padding: 16px;
       border: none;
       border-radius: 14px;
       font-size: 18px;
       font-weight: 800;
-      cursor: pointer;
       background: #1e88e5;
       color: #fff;
-      transition: opacity 0.2s ease;
+      cursor: pointer;
     }
 
     .btn:hover {
       opacity: 0.92;
-    }
-
-    /* スマホ用微調整 */
-    @media (max-width: 420px) {
-      .card {
-        padding: 20px;
-        border-radius: 16px;
-      }
-      h1 {
-        font-size: 24px;
-      }
     }
   </style>
 </head>
@@ -167,86 +133,57 @@
       <h1>予約フォーム</h1>
       <p class="sub">以下の内容を入力して予約してください。</p>
 
-      <!--
-        ✅このフォームは「見た目用・課題用」です
-        ✅実際の送信は行わず、後でJavaScriptで完了ページへ移動できます
-      -->
       <form id="reservationForm" action="#" method="post">
         <!-- 氏名 -->
         <div class="field">
           <label for="name">氏名<span class="req">必須</span></label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="例）山田 花子"
-            required
-          />
+          <input type="text" id="name" name="name" required>
         </div>
 
-        <!-- メールアドレス -->
+        <!-- メール -->
         <div class="field">
           <label for="email">メールアドレス<span class="req">必須</span></label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="例）example@mail.com"
-            required
-          />
+          <input type="email" id="email" name="email" required>
         </div>
 
         <!-- 希望日 -->
         <div class="field">
           <label for="date">希望日<span class="req">必須</span></label>
-          <input type="date" id="date" name="date" required />
+          <input type="date" id="date" name="date" required>
         </div>
 
-        <!-- 支払方法（選択式） -->
+        <!-- 支払方法 -->
         <div class="field">
           <label>支払方法<span class="req">必須</span></label>
-
           <div class="radio-wrap">
-            <!--
-              ✅支払方法は「選択式」
-              ✅クレジットカードは「番号入力なし」と明記
-            -->
             <label class="radio-item">
-              <input type="radio" name="payment" value="現地支払い" required />
+              <input type="radio" name="payment" value="現地支払い" required>
               現地支払い
             </label>
-
             <label class="radio-item">
-              <input type="radio" name="payment" value="銀行振り込み" required />
+              <input type="radio" name="payment" value="銀行振り込み">
               銀行振り込み
             </label>
-
             <label class="radio-item">
-              <input type="radio" name="payment" value="クレジットカード（番号入力なし）" required />
+              <input type="radio" name="payment" value="クレジットカード（番号入力なし）">
               クレジットカード（番号入力なし）
             </label>
-
             <p class="pay-note">※支払情報（番号など）の入力は不要です</p>
           </div>
         </div>
 
-        <!-- メッセージ（任意） -->
+        <!-- メッセージ -->
         <div class="field">
           <label for="message">メッセージ（任意）</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="ご希望やご質問があればご入力ください"
-          ></textarea>
+          <textarea id="message" name="message"></textarea>
         </div>
 
-        <!-- 送信ボタン -->
         <button class="btn" type="submit">予約を送信する</button>
       </form>
     </main>
   </div>
 
-  <!-- ✅ bodyの閉じタグ直前に app.js を読み込む（再確認済み） -->
+  <!-- ✅ JSは body の最後 -->
   <script src="app.js?v=2"></script>
 </body>
 </html>
