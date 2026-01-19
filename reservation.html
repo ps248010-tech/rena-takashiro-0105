@@ -5,28 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>予約フォーム</title>
 
-  <!--
-    =========================
-    予約フォーム用 CSS
-    ・背景：薄いグレー
-    ・フォーム：白背景＋角丸＋影
-    ・文字サイズを少し大きめ
-    ・スマホ対応
-    =========================
-  -->
   <style>
-    /* 全体の基本設定 */
+    /* ===== 全体 ===== */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-      background: #eeeeee;      /* 薄いグレー背景 */
+      background: #eeeeee;
       color: #333;
       line-height: 1.7;
-      font-size: 16px;          /* 文字を少し大きく */
+      font-size: 16px;
     }
 
-    /* フォームを中央に配置 */
+    /* ===== 中央配置 ===== */
     .page {
       min-height: 100vh;
       display: flex;
@@ -35,20 +26,19 @@
       padding: 24px;
     }
 
-    /* フォーム本体 */
+    /* ===== フォームカード ===== */
     .card {
       width: 100%;
       max-width: 520px;
-      background: #ffffff;      /* 白背景 */
-      border-radius: 16px;      /* 角を丸く */
+      background: #ffffff;
+      border-radius: 16px;
       padding: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* 影 */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     }
 
-    /* タイトル */
     h1 {
       font-size: 22px;
-      margin: 0 0 12px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -59,7 +49,7 @@
       margin-bottom: 20px;
     }
 
-    /* 入力欄 */
+    /* ===== 入力欄 ===== */
     .field {
       margin-bottom: 16px;
     }
@@ -85,7 +75,6 @@
       min-height: 120px;
     }
 
-    /* 入力中の見た目 */
     input:focus,
     textarea:focus {
       outline: none;
@@ -93,7 +82,7 @@
       box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.2);
     }
 
-    /* 送信ボタン */
+    /* ===== 送信ボタン ===== */
     .btn {
       width: 100%;
       padding: 16px;
@@ -111,14 +100,13 @@
       opacity: 0.9;
     }
 
-    /* 必須表示 */
     .required {
       color: #e53935;
       font-size: 12px;
       margin-left: 6px;
     }
 
-    /* スマホ用微調整 */
+    /* ===== スマホ ===== */
     @media (max-width: 420px) {
       .card {
         padding: 20px;
@@ -138,11 +126,12 @@
       <p class="note">以下の内容を入力して送信してください。</p>
 
       <!--
-        フォーム本体
-        action="" → 送信先（後で thanks.html などを指定）
+        ★やること①
+        form に id を付ける
+        action は使わず、JavaScriptで画面遷移する
       -->
-      <form action="" method="post">
-        <!-- 名前 -->
+      <form id="reservationForm">
+
         <div class="field">
           <label for="name">お名前 <span class="required">必須</span></label>
           <input
@@ -154,7 +143,6 @@
           />
         </div>
 
-        <!-- メールアドレス -->
         <div class="field">
           <label for="email">メールアドレス <span class="required">必須</span></label>
           <input
@@ -166,13 +154,11 @@
           />
         </div>
 
-        <!-- 希望日 -->
         <div class="field">
           <label for="date">希望日 <span class="required">必須</span></label>
           <input type="date" id="date" name="date" required />
         </div>
 
-        <!-- メッセージ -->
         <div class="field">
           <label for="message">メッセージ</label>
           <textarea
@@ -182,11 +168,28 @@
           ></textarea>
         </div>
 
-        <!-- 送信ボタン -->
         <button class="btn" type="submit">送信する</button>
       </form>
     </main>
   </div>
+
+  <!--
+    ★やること②
+    送信ボタンを押したら完了ページへ移動するJavaScript
+  -->
+  <script>
+    // フォームが送信されたときの処理
+    document
+      .querySelector("#reservationForm")
+      .addEventListener("submit", function (e) {
+
+        e.preventDefault();
+        // ↑ 本来のフォーム送信（ページ再読み込み）を止める
+
+        // 完了ページへ移動
+        window.location.href = "reservation-done.html";
+      });
+  </script>
 </body>
 </html>
 
