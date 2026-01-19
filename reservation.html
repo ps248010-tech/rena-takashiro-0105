@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>予約フォーム</title>
+
+  <!--
+    ✅CSSはこの<style>タグの中に書きます
+    ✅スマホでも見やすいように、幅はmax-widthで制限しています
+  -->
+  <style>
+    /* ページ全体の基本設定 */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans JP", sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* 画面の中央にフォームを置くための枠 */
+    .page {
+      min-height: 100vh;              /* 画面の高さに合わせる */
+      display: flex;                   /* 中央寄せに便利 */
+      align-items: center;             /* 縦方向の中央 */
+      justify-content: center;         /* 横方向の中央 */
+      padding: 24px;                   /* 端にくっつかないように余白 */
+    }
+
+    /* フォーム本体（カード風） */
+    .card {
+      width: 100%;
+      max-width: 520px;                /* PCではこれ以上広がらない */
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 22px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 0 14px;
+      text-align: center;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin: 0 0 18px;
+      text-align: center;
+    }
+
+    /* 入力欄のまとまり */
+    .field {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* 入力欄（余白たっぷりで押しやすく） */
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+      font-size: 16px;                 /* スマホで拡大されにくい */
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* フォーカス時の見た目（入力中が分かりやすい） */
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #1e88e5;
+      box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.15);
+    }
+
+    /* 送信ボタン：大きめ＆押しやすい */
+    .btn {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #1e88e5;
+      color: #fff;
+      transition: transform 0.05s ease, opacity 0.2s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    /* 補足表示（必須など） */
+    .required {
+      font-size: 12px;
+      color: #e53935;
+      margin-left: 6px;
+      font-weight: 700;
+    }
+
+    /* 小さめ画面のときの微調整 */
+    @media (max-width: 420px) {
+      .card {
+        padding: 18px;
+      }
+      h1 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <main class="card">
+      <h1>予約フォーム</h1>
+      <p class="note">以下を入力して「送信」してください。</p>
+
+      <!--
+        ✅ここがフォーム本体です
+        action="" は、送信先（例：thanks.html）を後で入れます
+        method="post" はフォーム送信の形式です
+      -->
+      <form action="" method="post">
+        <!-- 名前 -->
+        <div class="field">
+          <label for="name">お名前 <span class="required">必須</span></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="例）山田 花子"
+            required
+          />
+        </div>
+
+        <!-- メールアドレス -->
+        <div class="field">
+          <label for="email">メールアドレス <span class="required">必須</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="例）example@mail.com"
+            required
+          />
+        </div>
+
+        <!-- 希望日 -->
+        <div class="field">
+          <label for="date">希望日 <span class="required">必須</span></label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <!-- メッセージ -->
+        <div class="field">
+          <label for="message">メッセージ</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="例）午前中希望です。初回相談をお願いしたいです。"
+          ></textarea>
+        </div>
+
+        <!-- 送信ボタン -->
+        <button class="btn" type="submit">送信する</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
