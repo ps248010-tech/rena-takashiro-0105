@@ -5,51 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>予約フォーム</title>
 
+  <!--
+    ✅CSSはこの<style>タグの中にまとめます
+    ✅デザインは「薄いグレー背景＋白いカード＋角丸＋影」のシンプル版
+  -->
   <style>
     /* ===== 全体 ===== */
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-      background: #eeeeee;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans JP", sans-serif;
       color: #333;
+      background: #eeeeee;           /* 薄いグレー */
       line-height: 1.7;
-      font-size: 16px;
     }
 
-    /* ===== 中央配置 ===== */
+    /* 画面中央に配置（スマホでも左右に余白ができる） */
     .page {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 24px;
+      box-sizing: border-box;
     }
 
-    /* ===== フォームカード ===== */
+    /* 白いカード（フォーム本体） */
     .card {
       width: 100%;
-      max-width: 520px;
-      background: #ffffff;
-      border-radius: 16px;
+      max-width: 560px;              /* PCで広がりすぎない */
+      background: #fff;
+      border-radius: 18px;
       padding: 28px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
     }
 
+    /* タイトル */
     h1 {
-      font-size: 22px;
-      margin-bottom: 12px;
+      margin: 0 0 8px;
       text-align: center;
+      font-size: 28px;
+      letter-spacing: 1px;
     }
 
-    .note {
-      font-size: 14px;
+    .sub {
+      margin: 0 0 22px;
+      text-align: center;
       color: #666;
-      text-align: center;
-      margin-bottom: 20px;
+      font-size: 14px;
     }
 
-    /* ===== 入力欄 ===== */
+    /* 入力ブロック */
     .field {
       margin-bottom: 16px;
     }
@@ -57,63 +64,98 @@
     label {
       display: block;
       font-size: 15px;
-      margin-bottom: 6px;
-      font-weight: 600;
+      font-weight: 700;
+      margin: 0 0 8px;
     }
 
-    input,
+    .req {
+      color: #e53935;                /* 必須は赤 */
+      font-weight: 800;
+      margin-left: 6px;
+      font-size: 13px;
+    }
+
+    /* テキスト入力 */
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
     textarea {
       width: 100%;
       padding: 14px;
-      font-size: 16px;
       border-radius: 12px;
-      border: 1px solid #cccccc;
+      border: 1px solid #cfcfcf;
+      font-size: 16px;               /* スマホで拡大されにくい */
       box-sizing: border-box;
+      background: #fff;
     }
 
     textarea {
       min-height: 120px;
+      resize: vertical;
     }
 
+    /* 入力中の強調 */
     input:focus,
     textarea:focus {
       outline: none;
       border-color: #1e88e5;
-      box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.2);
+      box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.18);
     }
 
-    /* ===== 送信ボタン ===== */
+    /* 支払方法（選択式） */
+    .radio-wrap {
+      border: 1px solid #e2e2e2;
+      border-radius: 12px;
+      padding: 14px;
+      background: #fafafa;
+    }
+
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 4px;
+      font-size: 16px;
+    }
+
+    .radio-item input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .pay-note {
+      margin: 6px 0 0;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* 送信ボタン */
     .btn {
       width: 100%;
+      margin-top: 6px;
       padding: 16px;
-      font-size: 17px;
-      font-weight: bold;
-      border-radius: 14px;
       border: none;
-      background: #1e88e5;
-      color: #ffffff;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 800;
       cursor: pointer;
-      transition: opacity 0.2s;
+      background: #1e88e5;
+      color: #fff;
+      transition: opacity 0.2s ease;
     }
 
     .btn:hover {
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
-    .required {
-      color: #e53935;
-      font-size: 12px;
-      margin-left: 6px;
-    }
-
-    /* ===== スマホ ===== */
+    /* スマホ用微調整 */
     @media (max-width: 420px) {
       .card {
         padding: 20px;
+        border-radius: 16px;
       }
-
       h1 {
-        font-size: 20px;
+        font-size: 24px;
       }
     }
   </style>
@@ -123,17 +165,16 @@
   <div class="page">
     <main class="card">
       <h1>予約フォーム</h1>
-      <p class="note">以下の内容を入力して送信してください。</p>
+      <p class="sub">以下の内容を入力して予約してください。</p>
 
       <!--
-        ★やること①
-        form に id を付ける
-        action は使わず、JavaScriptで画面遷移する
+        ✅このフォームは「見た目用・課題用」です
+        ✅実際の送信は行わず、後でJavaScriptで完了ページへ移動できます
       -->
       <form id="reservationForm">
-
+        <!-- 氏名 -->
         <div class="field">
-          <label for="name">お名前 <span class="required">必須</span></label>
+          <label for="name">氏名<span class="req">必須</span></label>
           <input
             type="text"
             id="name"
@@ -143,8 +184,9 @@
           />
         </div>
 
+        <!-- メールアドレス -->
         <div class="field">
-          <label for="email">メールアドレス <span class="required">必須</span></label>
+          <label for="email">メールアドレス<span class="req">必須</span></label>
           <input
             type="email"
             id="email"
@@ -154,42 +196,55 @@
           />
         </div>
 
+        <!-- 希望日 -->
         <div class="field">
-          <label for="date">希望日 <span class="required">必須</span></label>
+          <label for="date">希望日<span class="req">必須</span></label>
           <input type="date" id="date" name="date" required />
         </div>
 
+        <!-- 支払方法（選択式） -->
         <div class="field">
-          <label for="message">メッセージ</label>
+          <label>支払方法<span class="req">必須</span></label>
+
+          <div class="radio-wrap">
+            <!--
+              ✅支払方法は「選択式」
+              ✅クレジットカードは「番号入力なし」と明記
+            -->
+            <label class="radio-item">
+              <input type="radio" name="payment" value="現地支払い" required />
+              現地支払い
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="payment" value="銀行振り込み" required />
+              銀行振り込み
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="payment" value="クレジットカード（番号入力なし）" required />
+              クレジットカード（番号入力なし）
+            </label>
+
+            <p class="pay-note">※支払情報（番号など）の入力は不要です</p>
+          </div>
+        </div>
+
+        <!-- メッセージ（任意） -->
+        <div class="field">
+          <label for="message">メッセージ（任意）</label>
           <textarea
             id="message"
             name="message"
-            placeholder="例）午前中希望です。初回相談をお願いしたいです。"
+            placeholder="ご希望やご質問があればご入力ください"
           ></textarea>
         </div>
 
-        <button class="btn" type="submit">送信する</button>
+        <!-- 送信ボタン -->
+        <button class="btn" type="submit">予約を送信する</button>
       </form>
     </main>
   </div>
-
-  <!--
-    ★やること②
-    送信ボタンを押したら完了ページへ移動するJavaScript
-  -->
-  <script>
-    // フォームが送信されたときの処理
-    document
-      .querySelector("#reservationForm")
-      .addEventListener("submit", function (e) {
-
-        e.preventDefault();
-        // ↑ 本来のフォーム送信（ページ再読み込み）を止める
-
-        // 完了ページへ移動
-        window.location.href = "reservation-done.html";
-      });
-  </script>
 </body>
 </html>
 
