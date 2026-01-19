@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>高城玲奈｜公式サイト</title>
 
-  <!-- スマホ対応 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -30,12 +29,12 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    header img {
-      height: 40px;
+    .logo {
+      height: 48px;
     }
 
     header h1 {
-      margin-left: 12px;
+      margin-left: 14px;
       font-size: 18px;
       letter-spacing: 1px;
     }
@@ -64,7 +63,6 @@
       margin-bottom: 16px;
     }
 
-    /* サムネイル */
     .gallery {
       display: flex;
       gap: 12px;
@@ -113,6 +111,14 @@
       .gallery {
         justify-content: center;
       }
+
+      header {
+        justify-content: center;
+      }
+
+      header h1 {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -121,9 +127,11 @@
 
   <!-- ===== ヘッダー ===== -->
   <header>
+    <!-- ★ 公式ロゴ（5.png） -->
     <img
-      src="https://ps248010-tech.github.io/rena-takashiro-0105/images/2.png"
-      alt="サイトのロゴ"
+      src="https://ps248010-tech.github.io/rena-takashiro-0105/images/5.png"
+      alt="STARDALIA ENTERTAINMENT ロゴ"
+      class="logo"
     >
     <h1>STARDALIA ENTERTAINMENT</h1>
   </header>
@@ -134,13 +142,11 @@
 
       <!-- 左：画像 -->
       <div class="hero-image">
-        <!-- メイン写真 -->
         <img
           src="https://ps248010-tech.github.io/rena-takashiro-0105/images/1.png"
           alt="メインビジュアル"
         >
 
-        <!-- サブ写真 -->
         <div class="gallery">
           <img
             src="https://ps248010-tech.github.io/rena-takashiro-0105/images/2.png"
@@ -163,7 +169,6 @@
           繊細な感情表現と透明感を強みにしています。
         </p>
 
-        <!-- ★ 右下：予約ボタン（4.png）★ -->
         <a href="#" class="reserve-btn">
           <img
             src="https://ps248010-tech.github.io/rena-takashiro-0105/images/4.png"
