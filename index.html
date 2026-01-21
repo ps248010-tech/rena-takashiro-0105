@@ -1,190 +1,205 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>高城玲奈｜公式サイト</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高城玲奈｜Official Web Site</title>
 
   <style>
-    /* ===== 全体 ===== */
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color: #333;
-      background-color: #fafafa;
+    :root{
+      --text:#111;
+      --sub:#666;
+      --line:rgba(255,255,255,0.28);
+      --overlay:rgba(0,0,0,0.28);
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    body{
+      margin:0;
+      color:#fff;
+      font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP","MS Mincho",serif;
+      letter-spacing:0.02em;
     }
 
-    /* ===== ヘッダー ===== */
-    header {
-      display: flex;
-      align-items: center;
-      padding: 16px 24px;
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    a{ color:inherit; text-decoration:none; }
+
+    /* 全画面ヒーロー */
+    .hero{
+      min-height:100vh;
+      position:relative;
+      background:
+        linear-gradient(var(--overlay), var(--overlay)),
+        url("https://ps248010-tech.github.io/rena-takashiro-0105/images/1.png")
+        center/cover no-repeat;
     }
 
-    .logo {
-      height: 48px;
+    /* 上部ナビ（ロゴなし） */
+    .nav{
+      position:absolute;
+      top:0; left:0; right:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 22px;
+      border-bottom:1px solid var(--line);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.18);
     }
 
-    header h1 {
-      margin-left: 14px;
-      font-size: 18px;
-      letter-spacing: 1px;
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:baseline;
+      white-space:nowrap;
+    }
+    .brand .jp{
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:0.10em;
+    }
+    .brand .en{
+      font-size:12px;
+      opacity:0.85;
+      font-style:italic;
     }
 
-    /* ===== メイン ===== */
-    .hero {
-      padding: 60px 20px;
-      background-color: #f2f2f2;
+    .menu{
+      display:flex;
+      gap:18px;
+      font-size:13px;
+      opacity:0.95;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .menu a{
+      padding:6px 2px;
+      border-bottom:1px solid transparent;
+    }
+    .menu a:hover{
+      border-bottom-color:rgba(255,255,255,0.65);
     }
 
-    .hero-inner {
-      display: flex;
-      max-width: 1100px;
-      margin: 0 auto;
-      gap: 40px;
-      align-items: flex-start;
+    /* 中央コピー */
+    .center{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:90px 22px 40px;
+      box-sizing:border-box;
     }
 
-    .hero-image {
-      flex: 1;
+    .copy{
+      max-width:900px;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
 
-    .hero-image img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 16px;
+    h1{
+      margin:0;
+      font-size:42px;
+      letter-spacing:0.14em;
+      font-weight:700;
     }
 
-    .gallery {
-      display: flex;
-      gap: 12px;
+    .lead{
+      margin:0;
+      font-size:16px;
+      line-height:2.0;
+      opacity:0.92;
+      max-width:560px;
     }
 
-    .gallery img {
-      width: 120px;
-      border-radius: 6px;
+    /* 予約ボタン（4.pngを押すと予約へ） */
+    .reserve{
+      margin-top:16px;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      width:max-content;
+      padding:10px 0;
     }
 
-    .hero-text {
-      flex: 1;
+    .reserve img{
+      width:min(260px, 70vw);
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .reserve:hover img{
+      transform: translateY(-2px);
+      opacity:0.95;
     }
 
-    .hero-text h2 {
-      font-size: 32px;
-      margin-bottom: 8px;
+    .hint{
+      margin:0;
+      font-size:12px;
+      opacity:0.8;
     }
 
-    .hero-text p {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 24px;
+    /* 下部 */
+    .footer{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding:14px 22px;
+      font-size:12px;
+      opacity:0.75;
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
-    /* ===== 予約ボタン ===== */
-    .reserve-btn img {
-      width: 240px;
-    }
-
-    /* ===== フッター ===== */
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #777;
-    }
-
-    /* ===== スマホ ===== */
-    @media (max-width: 768px) {
-      .hero-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .gallery {
-        justify-content: center;
-      }
-
-      header {
-        justify-content: center;
-      }
-
-      header h1 {
-        display: none;
-      }
+    @media (max-width: 640px){
+      h1{ font-size:34px; }
+      .menu{ gap:12px; }
+      .brand .en{ display:none; }
+      .center{ padding-top:96px; }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ===== ヘッダー ===== -->
-  <header>
-    <img
-      src="https://ps248010-tech.github.io/rena-takashiro-0105/images/5.png"
-      alt="STARDALIA ENTERTAINMENT ロゴ"
-      class="logo"
-    >
-    <h1>STARDALIA ENTERTAINMENT</h1>
-  </header>
-
-  <!-- ===== メイン ===== -->
   <section class="hero">
-    <div class="hero-inner">
-
-      <!-- 左：画像 -->
-      <div class="hero-image">
-        <img
-          src="https://ps248010-tech.github.io/rena-takashiro-0105/images/1.png"
-          alt="メインビジュアル"
-        >
-
-        <div class="gallery">
-          <img
-            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/2.png"
-            alt="プロフィール写真1"
-          >
-          <img
-            src="https://ps248010-tech.github.io/rena-takashiro-0105/images/3.png"
-            alt="プロフィール写真2"
-          >
-        </div>
+    <header class="nav">
+      <div class="brand">
+        <div class="jp">高城 玲奈</div>
+        <div class="en">Rena Takashiro</div>
       </div>
+      <nav class="menu">
+        <a href="index.html">Top</a>
+        <a href="profile.html">Profile</a>
+        <a href="history.html">History</a>
+        <a href="fanclub.html">Fanclub</a>
+      </nav>
+    </header>
 
-      <!-- 右：テキスト -->
-      <div class="hero-text">
-        <h2>高城 玲奈</h2>
-        <p>
-          Rena Takashiro<br>
-          女優 / Actress<br><br>
+    <div class="center">
+      <div class="copy">
+        <h1>高城 玲奈</h1>
+        <p class="lead">
+          女優 / Actress<br>
           映画・ドラマを中心に活動。<br>
           繊細な感情表現と透明感を強みにしています。
         </p>
 
-        <!-- ★予約ボタン：reservation.html へ移動 -->
-        <a href="reservation.html" class="reserve-btn">
+        <!-- ✅ 4.pngクリックで予約フォームへ -->
+        <a class="reserve" href="reservation.html" aria-label="予約フォームへ移動">
           <img
             src="https://ps248010-tech.github.io/rena-takashiro-0105/images/4.png"
-            alt="予約するボタン"
+            alt="予約する"
           >
         </a>
+        <p class="hint">※ クリックすると予約フォームへ移動します</p>
       </div>
+    </div>
 
+    <div class="footer">
+      © Stardalia Entertainment Promotion
     </div>
   </section>
-
-  <!-- ===== フッター ===== -->
-  <footer>
-    © Stardalia Entertainment Promotion
-  </footer>
-
 </body>
 </html>
 
