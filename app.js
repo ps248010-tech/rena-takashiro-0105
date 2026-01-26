@@ -1,5 +1,5 @@
 // Python（Colab）側のAPIのURL
-const API_BASE = "https://cities-sara-citysearch-orchestra.trycloudflare.com";
+const API_BASE = " https://produced-cartoons-chest-mediterranean.trycloudflare.com";
 
 // ページが読み込まれてから実行
 document.addEventListener("DOMContentLoaded", () => {
